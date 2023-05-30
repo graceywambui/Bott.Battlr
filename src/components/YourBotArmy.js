@@ -2,7 +2,7 @@ import React from "react";
 import BotCard from "./BotCard";
 
 
-function YourBotArmy({ enlistedBots, dischargeBot, setEnlistedBots, enlistBot }) {
+function YourBotArmy({ enlistedBots, dischargeBot, setEnlistedBots, releaseBot }) {
  
   //your bot army code here...
   const removeBot = botId => {
@@ -17,7 +17,7 @@ function YourBotArmy({ enlistedBots, dischargeBot, setEnlistedBots, enlistBot })
       <div className="ui five column grid">
         <div className="row bot-army-row">
           {enlistedBots.map(bot => (
-            <BotCard onClick={enlistBot} bot={bot} />
+            <BotCard onClick={releaseBot} bot={bot} key={bot.id} />
           ))}
           Your Bot Army
         </div>

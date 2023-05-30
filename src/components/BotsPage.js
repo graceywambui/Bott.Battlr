@@ -11,10 +11,17 @@ function BotsPage() {
       setEnlistedBots(prevEnlistedBots => [...prevEnlistedBots, bot]);
     }
   };
+  
+  const releaseBot = bot => {
+    const retainedBots = enlistedBots.filter(enlistedBot => enlistedBot.id !== bot.id)
+    setEnlistedBots(retainedBots)
+  }
+
+  
 
   return (
     <div>
-      <YourBotArmy enlistedBots={enlistedBots} setEnlistedBots={setEnlistedBots} enlistBot={enlistBot} />
+      <YourBotArmy enlistedBots={enlistedBots} setEnlistedBots={setEnlistedBots} releaseBot={releaseBot}  />
       <BotCollection enlistBot={enlistBot} />
     </div>
   )

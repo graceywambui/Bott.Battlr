@@ -8,21 +8,16 @@ function BotCollection({ enlistBot }) {
   useEffect(() => {
     fetch("http://localhost:8002/bots")
     .then(response => response.json())
-    .then(data => setBots(data))
+    .then(dataReceived => setBots(dataReceived))
     .catch(error => console.error(error));
   }, []);
 
-  // const enlistBot = bot => {
-  //   if (!enlistedBots.find(enlistedBot => enlistedBot.id === bot.id)) {
-  //     setEnlistedBots(prevEnlistedBots => [...prevEnlistedBots, bot]);
-  //   }
-  // };
   
   return (
     <div className="ui four column grid">
       <div className="row">
         {bots.map(bot => 
-          <BotCard onClick={enlistBot} bot={bot} /> )}
+          <BotCard onClick={enlistBot} bot={bot} key={bot.id} /> )}
         Collection of all bots
         
       </div>
