@@ -1,25 +1,23 @@
 import React from "react";
+import BotCard from "./BotCard";
 
-function YourBotArmy({ enlistedBots, dischargeBot }) {
+
+function YourBotArmy({ enlistedBots, dischargeBot, setEnlistedBots, enlistBot }) {
+ 
   //your bot army code here...
+  const removeBot = botId => {
+    // Filter out the bot with the provided ID from the enlistedBots array
+    const updatedBots = enlistedBots.filter(bot => bot.id !== botId);
+    setEnlistedBots(updatedBots);
+  };
+
 
   return (
     <div className="ui segment inverted olive bot-army">
       <div className="ui five column grid">
         <div className="row bot-army-row">
           {enlistedBots.map(bot => (
-            <div key={bot.id} className="column">
-              <button onClick={() => dischargeBot(bot.id)} className="ui red button">
-                x
-              </button>
-              <img src={bot.avatar_url} alt={bot.name} />
-              <h3>{bot.name}</h3>
-              <p>Health: {bot.health}</p>
-              <p>Damage: {bot.damage}</p>
-              <p>Armor: {bot.armor}</p>
-              <p>Class: {bot.bot_class}</p>
-              <p>Catchphrase: {bot.catchphrase}</p>
-            </div>
+            <BotCard onClick={enlistBot} bot={bot} />
           ))}
           Your Bot Army
         </div>
